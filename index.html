@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#080B10">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>System Monitor</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="defensive-lock">
+
+  <!-- UNATHENTICATED / HONEYPOT GATE (Default visible until valid #key fragment verified) -->
+  <div id="gate-placeholder" class="gate-error-screen">
+    <div class="nginx-box">
+      <h1>404 Not Found</h1>
+      <hr>
+      <p>nginx/1.24.0 (Ubuntu)</p>
+    </div>
+  </div>
+
+  <!-- DECOY CAMOUFLAGE SCREEN (Physical Over-The-Shoulder Concealment) -->
+  <div id="decoy-container" class="decoy-mode hidden">
+    <div class="excel-header">
+      <div class="excel-title-bar">
+        <span>AutoSave <b>ON</b></span>
+        <span>Corporate_Inventory_Audit_Q3_Consolidated.xlsx - Excel</span>
+      </div>
+      <div class="excel-ribbon">
+        <span>File</span><span class="active">Home</span><span>Insert</span><span>Page Layout</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span>
+      </div>
+      <div class="excel-formula-bar">
+        <span class="fx-label">fx</span>
+        <input type="text" value="=SUM(E4:E18)*$B$2" readonly>
+      </div>
+    </div>
+    <div class="excel-table-wrapper">
+      <table class="excel-grid">
+        <thead>
+          <tr>
+            <th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="row-num">1</td><td class="header-cell">ASSET_ID</td><td class="header-cell">CATEGORY</td><td class="header-cell">ACQUISITION</td><td class="header-cell">LIFECYCLE</td><td class="header-cell">BOOK_VALUE ($)</td><td class="header-cell">STATUS</td></tr>
+          <tr><td class="row-num">2</td><td>EQ-9902</td><td>Server Blades</td><td>2021-04-12</td><td>Active</td><td>142,500.00</td><td>Audited</td></tr>
+          <tr><td class="row-num">3</td><td>EQ-9908</td><td>Network Switch</td><td>2021-08-19</td><td>Active</td><td>28,400.00</td><td>Audited</td></tr>
+          <tr><td class="row-num">4</td><td>EQ-9915</td><td>HVAC Systems</td><td>2022-01-10</td><td>Depreciating</td><td>12,940.50</td><td>Pending</td></tr>
+          <tr><td class="row-num">5</td><td>EQ-9940</td><td>Optic Transceivers</td><td>2022-06-03</td><td>Active</td><td>49,100.00</td><td>Audited</td></tr>
+          <tr><td class="row-num">6</td><td>EQ-9988</td><td>Auxiliary UPS</td><td>2023-02-14</td><td>Active</td><td>93,200.00</td><td>Audited</td></tr>
+          <tr><td class="row-num">7</td><td>EQ-1002</td><td>SAN Enclosures</td><td>2023-09-01</td><td>Provisioning</td><td>185,000.00</td><td>Verified</td></tr>
+          <tr><td class="row-num">8</td><td>EQ-1044</td><td>Routing Engines</td><td>2024-03-22</td><td>Active</td><td>64,800.00</td><td>Audited</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="excel-footer">
+      <span>READY</span>
+      <div class="sheet-tabs">
+        <span class="active-tab">Asset_Audit_2026</span>
+        <span>Depreciation_Schedule</span>
+        <span>Ledger_Reconcile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN TACTICAL OPERATIONS TERMINAL -->
+  <div id="terminal-root" class="terminal-shell hidden">
+
+    <!-- TOP TACTICAL HUD -->
+    <header class="tactical-hud">
+      <div class="hud-left">
+        <span class="hud-brand">SYS::TOT-NET</span>
+        <span class="status-indicator online" id="net-indicator">RELAY_ONLINE</span>
+        <span class="hud-meta">SWARM_PEERS: <b id="peer-count">0</b></span>
+        <span class="hud-meta">LATENCY: <b id="net-latency">--</b>ms</span>
+      </div>
+      <div class="hud-right">
+        <button id="btn-cam-trigger" class="hud-btn stealth" title="Double tap anytime to switch to Camouflage">CAMOUFLAGE [ESC]</button>
+        <button id="btn-panic-purge" class="hud-btn danger" title="Immediately wipe all memory, storage, and redirect">PURGE / PANIC</button>
+      </div>
+    </header>
+
+    <!-- MAIN CONSOLE INTERFACE -->
+    <main class="console-body">
+      
+      <!-- COMPARTMENTALIZED NAV / CHANNELS -->
+      <aside class="tactical-sidebar">
+        <div class="sidebar-header">SECTORS & NODES</div>
+        <div class="channel-group">
+          <div class="group-title">COMPARTMENTS</div>
+          <button class="channel-btn active" data-channel="TACTICAL"># TACTICAL-OPS</button>
+          <button class="channel-btn" data-channel="LOGISTICS"># LOGISTICS-SUPPLY</button>
+          <button class="channel-btn" data-channel="INTEL"># FIELD-INTEL</button>
+        </div>
+
+        <div class="channel-group">
+          <div class="group-title">DIRECT WHISPERS (EPHEMERAL)</div>
+          <div id="whisper-list" class="whisper-list">
+            <div class="whisper-empty">AWAITING PEER SIGNALS...</div>
+          </div>
+        </div>
+
+        <div class="node-identity-block">
+          <div class="id-label">NODE FINGERPRINT:</div>
+          <div id="node-fingerprint" class="id-hash">INITIALIZING...</div>
+          <div class="id-label">ASSIGNED ROLE:</div>
+          <div id="node-role" class="id-role">OPERATOR</div>
+        </div>
+      </aside>
+
+      <!-- FEED SECTOR -->
+      <section class="tactical-stream">
+        
+        <!-- BROADCAST DIRECTIVES FEED (ADMIN / COMMANDER ONLY SIGNED DIRECTIVES) -->
+        <div class="directives-wrapper">
+          <div class="directives-header">
+            <span>COMMAND DIRECTIVES (ED25519 VERIFIED ONLY)</span>
+            <span class="header-badge" id="directive-count">0 VALID DIRECTIVES</span>
+          </div>
+          <div id="directives-feed" class="directives-feed">
+            <div class="feed-placeholder">NO HIGH-LEVEL DIRECTIVES CURRENTLY ACTIVE</div>
+          </div>
+        </div>
+
+        <!-- OPERATIONAL CHAT FEED -->
+        <div class="stream-header">
+          <div class="stream-title">ACTIVE SECTOR: <span id="current-channel-label">TACTICAL-OPS</span></div>
+          <div class="stream-controls">
+            <label for="burn-timer-select">EPHEMERAL PURGE:</label>
+            <select id="burn-timer-select" class="tactical-select">
+              <option value="0">MANUAL ONLY</option>
+              <option value="60">60 SECONDS</option>
+              <option value="300">5 MINUTES</option>
+              <option value="900">15 MINUTES</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="message-stream" class="message-stream">
+          <!-- Transitory memory-backed messages inject here -->
+        </div>
+
+        <!-- INPUT DOCK -->
+        <footer class="stream-input-dock">
+          <form id="transmitter-form" class="transmitter-form">
+            <div class="input-prefix">&gt;</div>
+            <input type="text" id="payload-input" class="payload-input" placeholder="Type encrypted transmission payload..." autocomplete="off" spellcheck="false">
+            <button type="submit" class="submit-btn">TRANSMIT</button>
+            <button type="button" id="btn-broadcast-directive" class="directive-btn hidden">DIRECTIVE [CMD]</button>
+          </form>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script src="crypto.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
